@@ -36,7 +36,7 @@ export class Board {
         if (this.falling && row === this.ticks && col === 1) {
           board = board + this.falling.color;
         } else {
-          board = board + ".";
+          board = board + this.board[row][col];
         }
       }
       board = board + "\n";
