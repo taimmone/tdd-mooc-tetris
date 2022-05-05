@@ -41,6 +41,11 @@ export class Board {
 
     if (fallingPoint) {
       const [row, col] = fallingPoint;
+      if (row + 1 >= this.height) {
+        this.board[row][col] = this.falling.color;
+        this.falling = null;
+        return;
+      }
       this.board[row + 1][col] = this.falling.color;
     }
   }
