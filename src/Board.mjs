@@ -23,7 +23,9 @@ export class Board {
 
   tick() {
     this.ticks++;
-    this.moveFalling();
+    if (this.falling) {
+      this.moveFalling();
+    }
   }
 
   moveFalling() {
