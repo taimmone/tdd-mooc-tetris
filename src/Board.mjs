@@ -18,10 +18,29 @@ export class Board {
       throw new Error("already falling");
     }
     this.falling = block;
+    this.board[0][1] = this.falling.color;
   }
 
   tick() {
     this.ticks++;
+    this.moveFalling();
+  }
+
+  moveFalling() {
+    let fallingPoint = null;
+    for (let row = 0; row < this.height; ++row) {
+      for (let col = 0; col < this.width; ++col) {
+        if (this.falling && this.board[row][col] == this.falling.color) {
+          fallingPoint = [...[row, col]];
+        }
+        this.board[row][col] = ".";
+      }
+    }
+
+    if (fallingPoint) {
+      const [row, col] = fallingPoint;
+      this.board[row + 1][col] = this.falling.color;
+    }
   }
 
   hasFalling() {
@@ -32,11 +51,7 @@ export class Board {
     let board = "";
     for (let row = 0; row < this.height; ++row) {
       for (let col = 0; col < this.width; ++col) {
-        if (this.falling && row === this.ticks && col === 1) {
-          board = board + this.falling.color;
-        } else {
-          board = board + this.board[row][col];
-        }
+        board = board + this.board[row][col];
       }
       board = board + "\n";
     }
