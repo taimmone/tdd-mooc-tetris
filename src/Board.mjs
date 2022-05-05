@@ -10,8 +10,7 @@ export class Board {
     this.height = height;
     this.falling = null;
     this.ticks = 0;
-    this.board = new Array(this.height);
-    this.board.fill(new Array(this.width).fill("."));
+    this.board = [...Array(height)].map(() => Array(width).fill("."));
   }
 
   drop(block) {
