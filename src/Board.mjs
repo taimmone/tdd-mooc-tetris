@@ -35,7 +35,9 @@ export class Board {
         if (this.falling && this.board[row][col] == this.falling.color) {
           fallingPoint = [...[row, col]];
         }
-        this.board[row][col] = ".";
+        if (this.board[row][col] === this.falling.color) {
+          this.board[row][col] = ".";
+        }
       }
     }
 
