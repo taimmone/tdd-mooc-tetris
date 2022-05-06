@@ -21,8 +21,12 @@ export class Board {
     if (this.hasFalling()) {
       throw new Error("already falling");
     }
+    this.setFalling(block);
+  }
+
+  setFalling(block) {
     this.falling = block;
-    this.board[0][1] = this.falling.color;
+    this.board[0][1] = block.color;
   }
 
   tick() {
