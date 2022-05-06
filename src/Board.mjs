@@ -1,3 +1,5 @@
+const EMPTY = ".";
+
 export class Board {
   width;
   height;
@@ -10,7 +12,7 @@ export class Board {
     this.height = height;
     this.falling = null;
     this.ticks = 0;
-    this.board = [...Array(height)].map(() => Array(width).fill("."));
+    this.board = [...Array(height)].map(() => Array(width).fill(EMPTY));
   }
 
   hasFalling() {
@@ -44,14 +46,14 @@ export class Board {
           fallingPoint = [...[row, col]];
         }
         if (this.board[row][col] === this.falling.color) {
-          this.board[row][col] = ".";
+          this.board[row][col] = EMPTY;
         }
       }
     }
 
     if (fallingPoint) {
       const [row, col] = fallingPoint;
-      if (row + 1 >= this.height || this.board[row + 1][col] !== ".") {
+      if (row + 1 >= this.height || this.board[row + 1][col] !== EMPTY) {
         this.board[row][col] = this.falling.color;
         this.falling = null;
         return;
