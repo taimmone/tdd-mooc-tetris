@@ -2,7 +2,11 @@ export class RotatingShape {
   shape;
 
   constructor(shape) {
-    this.shape = shape.split("\n").map((row) => row.trim().split(""));
+    if (typeof shape !== "string") {
+      this.shape = shape;
+    } else {
+      this.shape = shape.split("\n").map((row) => row.trim().split(""));
+    }
   }
 
   toString() {
