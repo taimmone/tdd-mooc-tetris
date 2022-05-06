@@ -9,6 +9,17 @@ export class RotatingShape {
     }
   }
 
+  rotateRight() {
+    const size = this.shape.length;
+    let rotated = [...Array(size)].map(() => [...Array(size)]);
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        rotated[col][size - 1 - row] = this.shape[row][col];
+      }
+    }
+    return new RotatingShape(rotated);
+  }
+
   toString() {
     let shapeString = "";
     for (let row = 0; row < this.shape.length; ++row) {
