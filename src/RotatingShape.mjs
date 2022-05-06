@@ -20,6 +20,10 @@ export class RotatingShape {
     return new RotatingShape(rotated);
   }
 
+  rotateLeft() {
+    return this.rotateRight().rotateRight().rotateRight();
+  }
+
   toString() {
     let shapeString = "";
     for (let row = 0; row < this.shape.length; ++row) {
