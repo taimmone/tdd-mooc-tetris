@@ -13,8 +13,12 @@ export class Board {
     this.board = [...Array(height)].map(() => Array(width).fill("."));
   }
 
+  hasFalling() {
+    return !!this.falling;
+  }
+
   drop(block) {
-    if (this.falling) {
+    if (this.hasFalling()) {
       throw new Error("already falling");
     }
     this.falling = block;
@@ -23,7 +27,7 @@ export class Board {
 
   tick() {
     this.ticks++;
-    if (this.falling) {
+    if (this.hasFalling()) {
       this.moveFalling();
     }
   }
@@ -32,7 +36,7 @@ export class Board {
     let fallingPoint = null;
     for (let row = 0; row < this.height; ++row) {
       for (let col = 0; col < this.width; ++col) {
-        if (this.falling && this.board[row][col] == this.falling.color) {
+        if (this.hasFalling() && this.board[row][col] == this.falling.color) {
           fallingPoint = [...[row, col]];
         }
         if (this.board[row][col] === this.falling.color) {
@@ -50,10 +54,6 @@ export class Board {
       }
       this.board[row + 1][col] = this.falling.color;
     }
-  }
-
-  hasFalling() {
-    return !!this.falling;
   }
 
   toString() {
