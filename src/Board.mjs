@@ -24,15 +24,15 @@ export class Board {
     this.#setFalling(block);
   }
 
-  #setFalling(block) {
-    this.#falling = block;
-    this.#board[0][1] = block.color;
-  }
-
   tick() {
     if (this.hasFalling()) {
       this.#moveFalling();
     }
+  }
+
+  #setFalling(block) {
+    this.#falling = block;
+    this.#board[0][1] = block.color;
   }
 
   #moveFalling() {
