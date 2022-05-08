@@ -4,14 +4,12 @@ export class Board {
   #width;
   #height;
   #falling;
-  #ticks;
   #board;
 
   constructor(width, height) {
     this.#width = width;
     this.#height = height;
     this.#falling = null;
-    this.#ticks = 0;
     this.#board = [...Array(height)].map(() => Array(width).fill(EMPTY));
   }
 
@@ -32,7 +30,6 @@ export class Board {
   }
 
   tick() {
-    this.#ticks++;
     if (this.hasFalling()) {
       this.moveFalling();
     }
