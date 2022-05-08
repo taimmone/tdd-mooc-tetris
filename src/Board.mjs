@@ -21,21 +21,21 @@ export class Board {
     if (this.hasFalling()) {
       throw new Error("already falling");
     }
-    this.setFalling(block);
+    this.#setFalling(block);
   }
 
-  setFalling(block) {
+  #setFalling(block) {
     this.#falling = block;
     this.#board[0][1] = block.color;
   }
 
   tick() {
     if (this.hasFalling()) {
-      this.moveFalling();
+      this.#moveFalling();
     }
   }
 
-  moveFalling() {
+  #moveFalling() {
     let fallingPoint = null;
     for (let row = 0; row < this.#height; ++row) {
       for (let col = 0; col < this.#width; ++col) {
